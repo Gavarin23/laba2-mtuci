@@ -1,10 +1,9 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 import pyjokes
-
+import uvicorn
 
 app = FastAPI()
-
 
 class Joke(BaseModel):
     friend: str
@@ -32,19 +31,6 @@ def multi_friends_joke(friend: str, jokes_number: int):
         result += friend + f" tells his joke #{i + 1}: " + pyjokes.get_joke() + " "
     return result
 
-from  fastapi import FastAPI
-import pyjokes
-from pydantic import BaseModel
-
-app = FastAPI()
-
-from  fastapi import FastAPI
-import pyjokes
-from pydantic import BaseModel
-
-app = FastAPI()
-
-
 @app.get('/')
 def kalkulator(value1: int, value2: int, znak: str):
     if (znak == '+'):
@@ -65,3 +51,4 @@ def kalkulator(value1: int, value2: int, znak: str):
     if (znak == '**'):
         return value1 ** value2
 
+uvicorn.run(app, host="127.0.0.1", port=5500)
